@@ -1,11 +1,11 @@
 # Anthem Formulary Extractor
 
-A Python tool for extracting structured pharmaceutical formulary data provided by [Anthem](https://anthem.com). This tool parses PDF tables containing drug information, organizing them into a hierarchical JSON structure with categories and subcategories, and creates corresponding Excel files.
+A Python tool for extracting pharmaceutical formulary data provided by [Anthem](https://anthem.com) into structured formats. This tool parses formulary data tables from (a) corresponding PDF(s) containing drug information, organizing them into a hierarchical JSON structure with categories and subcategories, and creates the corresponding Excel file(s).
 
 ## Project Structure
 
 ```
-pdf-extraction/
+/
 ├── src/
 │   ├── extract_pdf_tables.py    # PDF extraction script
 │   └── create_excel_file.py     # Excel file creation script
@@ -186,7 +186,3 @@ The tool works with Anthem's pharmaceutical formulary PDFs with this structure:
     - Normalizes whitespace
 6. **Fuzzy Matching**: Matches extracted categories to TOC entries for consistency
 7. **Hierarchical Organization**: Builds nested JSON structure
-
-## License
-
-This project is provided as-is for pharmaceutical formulary data extraction purposes.
