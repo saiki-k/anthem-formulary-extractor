@@ -1,5 +1,6 @@
-# Output directory
+# Output directory (but track example outputs)
 output/
+!example/output/
 
 # Python
 __pycache__/
@@ -39,8 +40,3 @@ env/
 # OS
 .DS_Store
 Thumbs.db
-
-# Legacy output files (root directory)
-extracted_data.json
-extraction_warnings.json
-table_of_contents.json
