@@ -36,7 +36,43 @@ def print_summary(
     print(f"  - Categories found: {len(data['categories'])}")
     print(f"  - Total subcategories: {total_subcategories}")
     print(f"  - Total rows extracted: {total_rows}")
+    print(f"  - Total rows processed: {data['total_rows_processed']}")
     print(f"  - Warnings (skipped rows): {len(data['warnings'])}")
+
+    # Validation checks
+    print(f"\nValidation:")
+
+    # Check 1: TOC entries should match categories found
+    toc_count = len(data["table_of_contents"])
+    categories_count = len(data["categories"])
+    toc_match = toc_count == categories_count
+    print(
+        f"  - TOC entries ({toc_count}) == Categories found ({categories_count}) {'✓' if toc_match else '✗'}"
+    )
+
+    # Check 2: Total rows processed should equal sum of all components
+    expected_total = (
+        total_rows + categories_count + total_subcategories + len(data["warnings"])
+    )
+    actual_total = data["total_rows_processed"]
+    rows_match = expected_total == actual_total
+    print(
+        f"  - Total rows processed ({actual_total}) == Sum of components ({expected_total}) {'✓' if rows_match else '✗'}"
+    )
+    print(
+        f"    Expected: {total_rows} drugs + {categories_count} categories + {total_subcategories} subcategories + {len(data['warnings'])} warnings = {expected_total}"
+    )
+
+    # Check 3: Warnings should be zero for clean extraction
+    no_warnings = len(data["warnings"]) == 0
+    print(f"  - No warnings (clean extraction) {'✓' if no_warnings else '✗'}")
+
+    # Check 4: Overall status
+    all_good = toc_match and rows_match and no_warnings
+    print(
+        f"  - Overall extraction quality: {'✓ EXCELLENT' if all_good else '(!) NEEDS REVIEW'}"
+    )
+
     print("=" * 80 + "\n")
 
 

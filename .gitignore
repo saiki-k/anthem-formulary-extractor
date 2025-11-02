@@ -1,9 +1,8 @@
 # Input directory
 input/
 
-# Output directory (but track example outputs)
+# Output directory
 output/
-!example/output/
 
 # Python
 __pycache__/

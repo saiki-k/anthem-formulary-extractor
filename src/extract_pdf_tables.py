@@ -241,6 +241,7 @@ def extract_structured_data(pdf_path):
     current_category = None
     current_subcategory = None
     warnings = []
+    total_rows_processed = 0
 
     consecutive_pages_without_tables = 0
     max_pages_without_tables = 1
@@ -280,6 +281,7 @@ def extract_structured_data(pdf_path):
                     if not row_data:
                         continue
 
+                    total_rows_processed += 1
                     row_type, value = classify_row(row_data, toc_categories)
 
                     if row_type == "category":
@@ -339,7 +341,12 @@ def extract_structured_data(pdf_path):
             if DEBUG_MODE:
                 print(f"  Total rows extracted so far: {total_rows}")
 
-    return {"table_of_contents": toc, "categories": categories, "warnings": warnings}
+    return {
+        "table_of_contents": toc,
+        "categories": categories,
+        "warnings": warnings,
+        "total_rows_processed": total_rows_processed,
+    }
 
 
 def main():
@@ -417,6 +424,7 @@ def main():
 
         print(f"  - Total subcategories: {total_subcategories}")
         print(f"  - Total rows extracted: {total_rows}")
+        print(f"  - Total rows processed: {data['total_rows_processed']}")
 
         # Show sample structure
         print(f"\nSample structure:")
