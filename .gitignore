@@ -1,3 +1,6 @@
+# Input directory
+input/
+
 # Output directory (but track example outputs)
 output/
 !example/output/
